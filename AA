@@ -1,11 +1,11 @@
 -- Load Rayfield UI
-local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Rayfield/main/source'))()
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 -- Create the UI Window
 local Window = Rayfield:CreateWindow({
-    Name = "Auza Hub",
-    LoadingTitle = "Alian Subo Tite",
-    LoadingSubtitle = "By iKazu",
+    Name = "Anime Adventures Lobby Utility",
+    LoadingTitle = "Anime Adventures Tool",
+    LoadingSubtitle = "By [Your Name]",
     ConfigurationSaving = {
         Enabled = true,
         FolderName = nil, -- Default folder
