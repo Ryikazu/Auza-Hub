@@ -1,0 +1,145 @@
+-- Load Rayfield UI
+local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Rayfield/main/source'))()
+
+-- Create the UI Window
+local Window = Rayfield:CreateWindow({
+    Name = "Auza Hub",
+    LoadingTitle = "Alian Subo Tite",
+    LoadingSubtitle = "By iKazu",
+    ConfigurationSaving = {
+        Enabled = true,
+        FolderName = nil, -- Default folder
+        FileName = "AnimeAdventuresLobby"
+    },
+    Discord = {
+        Enabled = false,
+        Invite = "", -- Optional Discord invite
+        RememberJoins = true
+    },
+    KeySystem = false
+})
+
+-- Create Tabs
+local LobbyTab = Window:CreateTab("Lobby")
+local RewardsTab = Window:CreateTab("Rewards")
+local ShopTab = Window:CreateTab("Shop")
+local MiscTab = Window:CreateTab("Miscellaneous")
+
+-- Lobby Management
+LobbyTab:CreateSection("Lobby Actions")
+
+LobbyTab:CreateButton({
+    Name = "Join Lobby",
+    Callback = function()
+        game:GetService("ReplicatedStorage").endpoints.client_to_server.request_join_lobby:InvokeServer()
+    end
+})
+
+LobbyTab:CreateButton({
+    Name = "Leave Lobby",
+    Callback = function()
+        game:GetService("ReplicatedStorage").endpoints.client_to_server.request_leave_lobby:InvokeServer()
+    end
+})
+
+LobbyTab:CreateButton({
+    Name = "Vote to Start",
+    Callback = function()
+        game:GetService("ReplicatedStorage").endpoints.client_to_server.vote_start:InvokeServer()
+    end
+})
+
+LobbyTab:CreateButton({
+    Name = "Teleport to Lobby",
+    Callback = function()
+        game:GetService("ReplicatedStorage").endpoints.client_to_server.teleport_back_to_lobby:InvokeServer()
+    end
+})
+
+-- Rewards Management
+RewardsTab:CreateSection("Claim Rewards")
+
+RewardsTab:CreateButton({
+    Name = "Claim Daily Reward",
+    Callback = function()
+        game:GetService("ReplicatedStorage").endpoints.client_to_server.claim_daily_reward:InvokeServer()
+    end
+})
+
+RewardsTab:CreateButton({
+    Name = "Redeem Quest Rewards",
+    Callback = function()
+        game:GetService("ReplicatedStorage").endpoints.client_to_server.redeem_quest:InvokeServer(
+            { QuestID = "quest-id" } -- Replace "quest-id" dynamically if needed
+        )
+    end
+})
+
+RewardsTab:CreateButton({
+    Name = "Claim Battlepass Rewards",
+    Callback = function()
+        game:GetService("ReplicatedStorage").endpoints.client_to_server.claim_battlepass_rewards:InvokeServer()
+    end
+})
+
+RewardsTab:CreateButton({
+    Name = "Get Current Event",
+    Callback = function()
+        game:GetService("ReplicatedStorage").endpoints.client_to_server.get_current_event:InvokeServer()
+    end
+})
+
+-- Shop Management
+ShopTab:CreateSection("Buy Items")
+
+ShopTab:CreateButton({
+    Name = "Buy Raid Ticket",
+    Callback = function()
+        game:GetService("ReplicatedStorage").endpoints.client_to_server.buy_raid_ticket:InvokeServer()
+    end
+})
+
+ShopTab:CreateButton({
+    Name = "Buy Gold Shop Item",
+    Callback = function()
+        game:GetService("ReplicatedStorage").endpoints.client_to_server.buy_gold_shop_item:InvokeServer(
+            { ItemID = "item-id" } -- Replace with valid Item ID
+        )
+    end
+})
+
+ShopTab:CreateButton({
+    Name = "Buy Treasure Radar",
+    Callback = function()
+        game:GetService("ReplicatedStorage").endpoints.client_to_server.buy_treasure_radar:InvokeServer()
+    end
+})
+
+-- Miscellaneous Features
+MiscTab:CreateSection("Extras")
+
+MiscTab:CreateButton({
+    Name = "Redeem Code",
+    Callback = function()
+        game:GetService("ReplicatedStorage").endpoints.client_to_server.redeem_code:InvokeServer(
+            { Code = "code-here" } -- Replace with a valid code
+        )
+    end
+})
+
+MiscTab:CreateButton({
+    Name = "Request Missions Data",
+    Callback = function()
+        game:GetService("ReplicatedStorage").endpoints.client_to_server.request_missions_data:InvokeServer()
+    end
+})
+
+MiscTab:CreateButton({
+    Name = "Request Current Missions",
+    Callback = function()
+        game:GetService("ReplicatedStorage").endpoints.client_to_server.request_current_missions:InvokeServer()
+    end
+})
+
+-- Finalize the UI
+Rayfield:LoadConfiguration()
